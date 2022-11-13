@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+  <h1><br />Choose Show<br /></h1>
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ show.hidden_tag() }}
+      <fieldset class="form-group">
+        <div class="row p-3">
+          <div class="col order">
+            <div class="col-md mb">
+              {{ show.show_name.label(class="col-md") }}
+              {{show.show_name(class="form-control form-control-md ") }}
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group p-3">
+        {{ show.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+  </div>
+  {% for show_ in shows %}
+  <div class="p-3">
+    <div class="card bg-warning text-dark p-3" style="border-radius: 1rem;">
+      <h3>{{ show_.name }}</h3>
+      <h5>ID: {{ show_.id }}</h5> On {{ show_.date }} from {{ show_.start_time }} to {{ show_.end_time }}
+      <div class="col-sm">
+        <a href="/{{ task }}/{{ id }}/{{ show_.id }}" class="btn btn-outline-dark btn-sm">
+          Choose Show
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
